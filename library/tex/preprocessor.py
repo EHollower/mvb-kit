@@ -408,8 +408,6 @@ def print_header(data: str, outstream) -> None:
     if until not in lines:
         return
 
-    print("here")
-
     split_index = lines.index(until) + 1
     header_lines, remaining_lines = lines[:split_index], lines[split_index:]
 
