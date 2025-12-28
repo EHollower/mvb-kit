@@ -3,7 +3,7 @@ name: Build LaTeX kit
 on:
   push:
   pull_request:
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 jobs:
   build-kit:
