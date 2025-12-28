@@ -2,8 +2,8 @@ name: Build LaTeX kit
 
 on:
   push:
-    branches: [ main ]
   pull_request:
+  workflow_dispatch: {}
 
 jobs:
   build-kit:
@@ -12,25 +12,28 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install TeX Live
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            texlive-luatex \
-            texlive-latex-extra \
-            texlive-fonts-recommended
+          sudo apt-get install -y texlive-luatex texlive-latex-extra texlive-fonts-recommended latexmk
 
       - name: Build KIT
         env:
           TEXINPUTS: .:library/tex:
           max_print_line: 1048576
         run: |
-          make kit
-          ls build/*.pdf
+          set -euo pipefail
+          make kit || { echo "build failed"; exit 1; }
 
-      - name: Upload PDF
+      - name: Show output files
+        run: ls -l build || true
+
+      - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
           name: mvb-kit
           path: build/**/*.pdf
+
