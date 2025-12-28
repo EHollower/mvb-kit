@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mvb-kit
-          path: build/**/*.p
+          path: build/**/*.pdf
