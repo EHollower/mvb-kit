@@ -1,0 +1,33 @@
+name: verify
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y python3 python3-pip
+          pip3 install online-judge-tools online-judge-verify-helper
+
+      - name: Verify library
+        run: |
+          oj-verify run
+
+      - name: Generate coverage report
+        run: |
+          oj-verify coverage
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: .verify-helper/coverage/
+

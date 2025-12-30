@@ -3,7 +3,7 @@
  * Date: 2025-12-18
  * License: CC0
  * Source: https://codeforces.com/blog/entry/11080
- * Description: Ordered Set. 
+ * Description: Ordered Set. \\
  * Supports fiding k-th element (0-indexed) and count of elements < x.
  * Time: $O(\log N)$
  */

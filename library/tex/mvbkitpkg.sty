@@ -17,7 +17,11 @@
 \usepackage{luacode}
 \usepackage[utf8]{luainputenc}
 
-% \usepackage{fontspec}
+\usepackage{fontspec}
+\setmonofont{Fira Mono}[
+    Scale=0.90, % This makes it fit much more code per line
+    BoldFont={Fira Mono Medium},
+]
 % \setmainfont{Latin Modern Roman}
 % \setmonofont{TeX Gyre Cursor}
 % \usepackage{fix-cm} 
@@ -310,7 +314,7 @@ end
     language=[11]C++,
     deletedirectives={line},
     morekeywords={alignas,alignof},
-    columns=fixed,
+    columns=flexible,
     literate={  }{\hspace*{2ex}}1,
     % -- Appearance and Style --
     frame=t,                         % A single line (frame) on top
@@ -345,7 +349,7 @@ end
 %----------------------------------------------------------------------------------------
 
 \setlength{\columnseprule}{0.5pt} % Multicol separation line with
-\setlength{\columnsep}{10pt} % Multicol separation margin
+\setlength{\columnsep}{4pt} % Multicol separation margin
 \setcounter{tocdepth}{1} % Table of contents depth
 
 % \pdfsuppresswarningpagegroup=1

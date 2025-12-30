@@ -4,4 +4,5 @@ build/*
 !.git/
 !.github/
 !.gitignore
+!.verify-helper/
 !build/ubtl.pdf
