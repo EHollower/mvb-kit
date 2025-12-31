@@ -15,10 +15,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install TeX Live
+      - name: Install TeX Live and fonts (enable universe)
         run: |
+          set -euo pipefail
           sudo apt-get update
+          # ensure add-apt-repository is available and enable 'universe'
+          sudo apt-get install -y software-properties-common
+          sudo add-apt-repository --yes universe
+          sudo apt-get update
+          # install TeX + a commonly-available Fira-family programming font (Fira Code)
           sudo apt-get install -y texlive-luatex texlive-latex-extra texlive-fonts-recommended latexmk fonts-firacode
+          # rebuild font caches so fontspec/luaotfload can find them
+          sudo fc-cache -fv
+          # update luaotfload font database (may fail harmlessly if not present)
+          luaotfload-tool --update || true
 
       - name: Build KIT
         env:
