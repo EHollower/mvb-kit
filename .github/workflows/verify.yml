@@ -19,15 +19,4 @@ jobs:
 
       - name: Verify library
         run: |
-          oj-verify run
-
-      - name: Generate coverage report
-        run: |
-          oj-verify coverage
-
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage
-          path: .verify-helper/coverage/
-
+          oj-verify run -j 5
